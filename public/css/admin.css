@@ -1,0 +1,233 @@
+:root {
+    --adm-side: #212529;
+    --adm-side-hover: #343a40;
+    --adm-active: #0d6efd;
+}
+
+.admin-shell {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    min-height: 100vh;
+}
+
+.adm-side {
+    background: var(--adm-side);
+    color: #adb5bd;
+    display: flex;
+    flex-direction: column;
+    padding: 18px 0;
+}
+
+.adm-brand {
+    padding: 0 18px 16px;
+    border-bottom: 1px solid #343a40;
+    margin-bottom: 12px;
+}
+
+.adm-brand strong {
+    display: block;
+    color: #fff;
+    font-size: 16px;
+}
+
+.adm-brand span {
+    font-size: 12px;
+}
+
+.adm-menu a {
+    display: block;
+    padding: 11px 18px;
+    color: #adb5bd;
+    text-decoration: none;
+    font-size: 14px;
+    border-left: 3px solid transparent;
+}
+
+.adm-menu a:hover {
+    background: var(--adm-side-hover);
+    color: #fff;
+}
+
+.adm-menu a.adm-active {
+    background: var(--adm-side-hover);
+    color: #fff;
+    border-left-color: var(--adm-active);
+    font-weight: bold;
+}
+
+.adm-side-foot {
+    margin-top: auto;
+    padding: 14px 18px 0;
+    border-top: 1px solid #343a40;
+    font-size: 12px;
+}
+
+.adm-side-foot form {
+    margin: 10px 0 0;
+}
+
+.adm-side-foot button {
+    background: none;
+    border: 1px solid #495057;
+    color: #adb5bd;
+    border-radius: 5px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font: inherit;
+}
+
+.adm-side-foot button:hover {
+    background: #dc3545;
+    border-color: #dc3545;
+    color: #fff;
+}
+
+.adm-content {
+    padding: 15px;
+    min-width: 0;
+}
+
+.adm-content > .card > .card-header .adm-title {
+    font-size: 16px;
+}
+
+@media (max-width: 800px) {
+    .admin-shell {
+        grid-template-columns: 1fr;
+    }
+
+    .adm-menu {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .adm-menu a {
+        border-left: none;
+        border-bottom: 3px solid transparent;
+        padding: 11px 14px;
+    }
+
+    .adm-menu a.adm-active {
+        border-bottom-color: var(--adm-active);
+    }
+}
+
+/* ============ ISI HALAMAN ============ */
+
+.page-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.adm-flash {
+    padding: 12px 15px;
+    border-radius: 7px;
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+
+.adm-flash-ok {
+    background: #d1e7dd;
+    color: #0f5132;
+}
+
+.adm-flash-error {
+    background: #f8d7da;
+    color: #842029;
+}
+
+.adm-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.adm-badge-paid {
+    background: #d1e7dd;
+    color: #0f5132;
+}
+
+.adm-badge-held {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.adm-badge-cancelled {
+    background: #f8d7da;
+    color: #842029;
+}
+
+.filter-bar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.filter-bar .search-area {
+    margin-bottom: 0;
+}
+
+.filter-bar .search-input input {
+    height: 40px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 15px;
+}
+
+.form-grid .full {
+    grid-column: span 2;
+}
+
+.form-error {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.form-actions .btn {
+    height: 46px;
+    padding: 0 24px;
+}
+
+.pagination {
+    display: flex;
+    gap: 8px;
+    list-style: none;
+    padding: 16px 16px 0;
+    margin: 0;
+}
+
+.pagination a,
+.pagination span {
+    padding: 6px 12px;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #212529;
+    font-size: 13px;
+}
+
+.pagination .active span {
+    background: var(--adm-active);
+    color: #fff;
+    border-color: var(--adm-active);
+}
+
+.pagination .disabled span {
+    color: #adb5bd;
+}
+
