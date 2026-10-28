@@ -33,6 +33,7 @@ class ProdukRequest extends FormRequest
             'barcode' => ['nullable', 'string', 'max:50', Rule::unique('products', 'barcode')->ignore($produkId)],
             'price' => ['required', 'integer', 'min:0'],
             'stock' => ['required', 'integer', 'min:0'],
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
         ];
     }
 
@@ -55,6 +56,9 @@ class ProdukRequest extends FormRequest
             'stock.required' => 'Stok wajib diisi.',
             'stock.integer' => 'Stok harus berupa angka bulat.',
             'stock.min' => 'Stok tidak boleh negatif.',
+            'image.image' => 'File harus berupa gambar.',
+            'image.mimes' => 'Gambar harus berformat jpg, jpeg, png, atau webp.',
+            'image.max' => 'Ukuran gambar maksimal 2MB.',
         ];
     }
 }

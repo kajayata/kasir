@@ -33,6 +33,7 @@
             <thead>
                 <tr>
                     <th width="50">No</th>
+                    <th width="70">Gambar</th>
                     <th width="110">Kode</th>
                     <th width="150">Barcode</th>
                     <th>Nama Barang</th>
@@ -45,6 +46,13 @@
                 @forelse ($produk as $p)
                     <tr>
                         <td>{{ $produk->firstItem() + $loop->index }}</td>
+                        <td>
+                            @if ($p->image)
+                                <img src="{{ asset('storage/'.$p->image) }}" alt="{{ $p->name }}" style="width:40px; height:40px; object-fit:cover; border-radius:6px; border:1px solid #e9ecef">
+                            @else
+                                <span style="color:#adb5bd">—</span>
+                            @endif
+                        </td>
                         <td><code>{{ $p->code }}</code></td>
                         <td>{{ $p->barcode ?? '—' }}</td>
                         <td><strong>{{ $p->name }}</strong></td>
@@ -68,7 +76,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="7" class="empty-cart">
+                        <td colspan="8" class="empty-cart">
                             @if ($q !== '')
                                 Produk "{{ $q }}" tidak ditemukan.
                             @else

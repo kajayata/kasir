@@ -11,7 +11,7 @@
             <div class="adm-flash adm-flash-error">Periksa kembali data yang diisi.</div>
         @endif
 
-        <form method="POST" action="{{ $produk->exists ? route('kasir.produk.update', $produk) : route('kasir.produk.store') }}">
+        <form method="POST" action="{{ $produk->exists ? route('kasir.produk.update', $produk) : route('kasir.produk.store') }}" enctype="multipart/form-data">
             @csrf
             @if ($produk->exists)
                 @method('PUT')
@@ -47,6 +47,17 @@
                     <label for="stock">Stok</label>
                     <input type="number" class="form-control" id="stock" name="stock" value="{{ old('stock', $produk->stock ?? 0) }}" min="0" required>
                     @error('stock') <div class="form-error">{{ $message }}</div> @enderror
+                </div>
+
+                <div class="form-group full">
+                    <label for="image">Gambar Produk <span style="color:#adb5bd">(opsional, jpg/jpeg/png/webp, max 2MB)</span></label>
+                    <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                    @error('image') <div class="form-error">{{ $message }}</div> @enderror
+                    @if ($produk->image)
+                        <div style="margin-top:10px">
+                            <img src="{{ asset('storage/'.$produk->image) }}" alt="{{ $produk->name }}" style="max-width:160px; max-height:160px; border-radius:8px; border:1px solid #e9ecef">
+                        </div>
+                    @endif
                 </div>
 
             </div>

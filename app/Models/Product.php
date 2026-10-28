@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['code', 'barcode', 'name', 'price', 'stock'])]
+#[Fillable(['code', 'barcode', 'name', 'price', 'stock', 'image'])]
 class Product extends Model
 {
     use HasFactory;
