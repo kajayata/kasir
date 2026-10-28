@@ -6,6 +6,7 @@ use App\Http\Requests\StoreTransaksiRequest;
 use App\Models\Product;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -103,6 +104,19 @@ class TransaksiController extends Controller
         return view('kasir.struk', [
             'transaksi' => $transaksi->load('details', 'user', 'customer'),
         ]);
+    }
+
+    public function invoice(Transaction $transaksi)
+    {
+        $transaksi->loadMissing('details', 'user', 'customer');
+
+        $pdf = Pdf::loadView('invoices.invoice', ['invoice' => $transaksi]);
+
+        $filename = $transaksi->transaction_number
+            ? 'invoice_'.$transaksi->transaction_number.'.pdf'
+            : 'invoice_'.$transaksi->id.'.pdf';
+
+        return $pdf->download($filename);
     }
 
     public function ditahan(): View

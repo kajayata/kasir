@@ -41,7 +41,8 @@
                         </td>
                         <td class="text-center">
                             @if ($t->status === 'paid')
-                                <a href="{{ route('kasir.struk', $t) }}">Lihat</a>
+                                <a href="{{ route('kasir.struk', $t) }}">Lihat</a> |
+                                <a href="{{ route('kasir.invoice', $t) }}">PDF</a>
                             @else
                                 —
                             @endif

@@ -26,6 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/kasir/transaksi/{transaksi}/cancel', [TransaksiController::class, 'cancel'])->name('kasir.cancel');
     Route::get('/kasir/transaksi/{transaksi}', [TransaksiController::class, 'detail'])->name('kasir.detail');
     Route::get('/kasir/transaksi/{transaksi}/struk', [TransaksiController::class, 'struk'])->name('kasir.struk');
+    Route::get('/kasir/transaksi/{transaksi}/invoice', [TransaksiController::class, 'invoice'])->name('kasir.invoice');
 
     Route::get('/kasir/ditahan', [TransaksiController::class, 'ditahan'])->name('kasir.ditahan');
     Route::get('/kasir/riwayat', [TransaksiController::class, 'riwayat'])->name('kasir.riwayat');
