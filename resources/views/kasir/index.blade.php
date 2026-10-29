@@ -218,6 +218,8 @@
     </footer>
 </div>
 
+@include('partials.echo')
+
 <script>
     window.KASIR = {
         csrf: @json(csrf_token()),

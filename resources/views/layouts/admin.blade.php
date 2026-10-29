@@ -49,5 +49,7 @@
 
 </div>
 
+@include('partials.echo')
+
 </body>
 </html>
