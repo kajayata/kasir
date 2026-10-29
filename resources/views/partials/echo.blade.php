@@ -5,7 +5,9 @@
 <script src="https://cdn.jsdelivr.net/npm/pusher-js@8.6.0/dist/web/pusher.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/laravel-echo@2.6.3/dist/echo.iife.js"></script>
 <script>
-    window.Echo = new Echo({
+    const EchoClient = window.Echo?.default ?? window.Echo;
+
+    window.Echo = new EchoClient({
         broadcaster: 'reverb',
         key: @json($reverb['key']),
         wsHost: @json($reverb['options']['host']),
