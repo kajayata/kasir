@@ -6,7 +6,10 @@ use App\Events\OrderPlaced;
 use App\Models\Product;
 use App\Models\Transaction;
 use App\Models\User;
+use Illuminate\Broadcasting\BroadcastException;
+use Illuminate\Contracts\Broadcasting\Broadcaster;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
 
@@ -177,6 +180,33 @@ class TransaksiTest extends TestCase
                 && $payload['grand_total'] === 82000
                 && $payload['kasir'] === $kasir->name;
         });
+    }
+
+    public function test_kegagalan_broadcast_tidak_menggagalkan_transaksi(): void
+    {
+        Broadcast::extend('throwing', fn () => new class implements Broadcaster
+        {
+            public function auth($request) {}
+
+            public function validAuthenticationResponse($request, $result) {}
+
+            public function broadcast(array $channels, $event, array $payload = [])
+            {
+                throw new BroadcastException('Reverb tidak tersedia.');
+            }
+        });
+
+        config([
+            'broadcasting.default' => 'throwing',
+            'broadcasting.connections.throwing' => ['driver' => 'throwing'],
+        ]);
+
+        $kasir = User::factory()->create();
+
+        $this->actingAs($kasir)->postJson(route('kasir.store'), $this->payload())->assertOk();
+
+        $this->assertSame(1, Transaction::count());
+        $this->assertNotNull(Transaction::sole()->transaction_number);
     }
 
     public function test_transaksi_ditahan_tidak_mengirim_event_order_placed(): void
