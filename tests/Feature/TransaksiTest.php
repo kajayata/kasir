@@ -2,10 +2,12 @@
 
 namespace Tests\Feature;
 
+use App\Events\OrderPlaced;
 use App\Models\Product;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
 
 class TransaksiTest extends TestCase
@@ -155,6 +157,59 @@ class TransaksiTest extends TestCase
         $this->assertNotNull($ditahan->transaction_number);
         $this->assertSame($stokAwal - 2, $indomie->fresh()->stock);
         $this->assertSame(2, $ditahan->details()->count());
+    }
+
+    public function test_pembayaran_mengirim_event_order_placed(): void
+    {
+        Event::fake([OrderPlaced::class]);
+
+        $kasir = User::factory()->create();
+
+        $this->actingAs($kasir)->postJson(route('kasir.store'), $this->payload())->assertOk();
+
+        Event::assertDispatched(OrderPlaced::class, function (OrderPlaced $event) use ($kasir) {
+            $payload = $event->broadcastWith();
+
+            return $event->broadcastAs() === 'order.placed'
+                && $event->broadcastOn()->name === 'orders'
+                && $event->transaction->transaction_number !== null
+                && $event->transaction->user->is($kasir)
+                && $payload['grand_total'] === 82000
+                && $payload['kasir'] === $kasir->name;
+        });
+    }
+
+    public function test_transaksi_ditahan_tidak_mengirim_event_order_placed(): void
+    {
+        Event::fake([OrderPlaced::class]);
+
+        $kasir = User::factory()->create();
+
+        $this->actingAs($kasir)
+            ->postJson(route('kasir.hold'), $this->payload())
+            ->assertOk();
+
+        Event::assertNotDispatched(OrderPlaced::class);
+    }
+
+    public function test_lanjutkan_transaksi_ditahan_mengirim_event_order_placed(): void
+    {
+        Event::fake([OrderPlaced::class]);
+
+        $kasir = User::factory()->create();
+
+        $holdId = $this->actingAs($kasir)
+            ->postJson(route('kasir.hold'), $this->payload())
+            ->assertOk()
+            ->json('id');
+
+        Event::assertNotDispatched(OrderPlaced::class);
+
+        $this->actingAs($kasir)
+            ->postJson(route('kasir.resume', Transaction::findOrFail($holdId)), $this->payload())
+            ->assertOk();
+
+        Event::assertDispatchedTimes(OrderPlaced::class, 1);
     }
 
     public function test_transaksi_bayar_tidak_bisa_dibatalkan(): void
