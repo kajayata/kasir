@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\OrderPlaced;
 use App\Http\Requests\StoreTransaksiRequest;
 use App\Models\Product;
 use App\Models\Transaction;
@@ -43,6 +44,8 @@ class TransaksiController extends Controller
 
             return $transaction;
         });
+
+        OrderPlaced::dispatch($transaction);
 
         return response()->json(['struk_url' => route('kasir.struk', $transaction)]);
     }
@@ -86,6 +89,8 @@ class TransaksiController extends Controller
 
             return $transaksi;
         });
+
+        OrderPlaced::dispatch($transaction);
 
         return response()->json(['struk_url' => route('kasir.struk', $transaction)]);
     }
