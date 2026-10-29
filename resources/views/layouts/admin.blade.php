@@ -50,6 +50,7 @@
 </div>
 
 @include('partials.echo')
+@include('partials.order-listener')
 
 </body>
 </html>

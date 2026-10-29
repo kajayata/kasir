@@ -219,6 +219,7 @@
 </div>
 
 @include('partials.echo')
+@include('partials.order-listener')
 
 <script>
     window.KASIR = {
