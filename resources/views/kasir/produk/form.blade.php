@@ -64,7 +64,7 @@
 
             <div class="form-actions">
                 <button type="submit" class="btn btn-success">Simpan</button>
-                <a href="{{ route('kasir.produk.index') }}" class="btn btn-secondary" style="text-decoration:none; line-height:46px">Batal</a>
+                <a href="{{ route('kasir.produk.index') }}" class="btn btn-secondary">Batal</a>
             </div>
         </form>
 

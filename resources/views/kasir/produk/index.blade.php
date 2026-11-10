@@ -12,7 +12,7 @@
     <div class="card-header">
         <div class="page-head">
             <span>Daftar Produk ({{ $produk->total() }})</span>
-            <a href="{{ route('kasir.produk.create') }}" class="btn btn-success" style="text-decoration:none; line-height:36px">+ Tambah Produk</a>
+            <a href="{{ route('kasir.produk.create') }}" class="btn btn-success">+ Tambah Produk</a>
         </div>
     </div>
 
@@ -23,7 +23,7 @@
             </div>
             <button type="submit" class="btn btn-primary">Cari</button>
             @if ($q !== '')
-                <a href="{{ route('kasir.produk.index') }}" class="btn btn-secondary" style="text-decoration:none; line-height:38px">Reset</a>
+                <a href="{{ route('kasir.produk.index') }}" class="btn btn-secondary">Reset</a>
             @endif
         </form>
     </div>
@@ -65,12 +65,12 @@
                             @endif
                         </td>
                         <td>
-                            <a href="{{ route('kasir.produk.edit', $p) }}" class="btn btn-primary" style="text-decoration:none; padding:0 14px; line-height:32px">Edit</a>
+                            <a href="{{ route('kasir.produk.edit', $p) }}" class="btn btn-primary" style="padding:0 14px">Edit</a>
                             <form method="POST" action="{{ route('kasir.produk.destroy', $p) }}" style="display:inline"
                                   onsubmit="return confirm('Hapus {{ $p->name }}? Riwayat transaksi lama tidak terpengaruh.')">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger" style="padding:0 14px; line-height:32px">Hapus</button>
+                                <button type="submit" class="btn btn-danger" style="padding:0 14px">Hapus</button>
                             </form>
                         </td>
                     </tr>
@@ -90,9 +90,7 @@
     </div>
 
     @if ($produk->hasPages())
-        <div style="padding:16px">
-            {{ $produk->links() }}
-        </div>
+        {{ $produk->links() }}
     @endif
 </div>
 
