@@ -6,16 +6,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Kasir Retail POS</title>
     <link rel="stylesheet" href="{{ asset('css/chasier.css') }}">
-    <style>
-        .footer-nav a { color: #adb5bd; margin-left: 14px; text-decoration: none; }
-        .footer-nav a:hover { color: #fff; text-decoration: underline; }
-        .quick-cash { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; margin-top: 10px; }
-        .quick-cash button {
-            padding: 8px 4px; border: 1px solid #b6d4fe; background: #fff;
-            border-radius: 5px; cursor: pointer; font-size: 12px; font-weight: 600;
-        }
-        .quick-cash button:hover { background: #0d6efd; color: #fff; }
-    </style>
 </head>
 <body>
 <div class="pos-container">
@@ -207,7 +197,7 @@
                 <a href="{{ route('kasir.produk.index') }}">Kelola Produk</a>
                 <form method="POST" action="{{ route('logout') }}" style="display:inline">
                     @csrf
-                    <button type="submit" style="background:none;border:none;color:#adb5bd;cursor:pointer;padding:0;font:inherit">Logout</button>
+                    <button type="submit">Logout</button>
                 </form>
             </span>
         </span>
