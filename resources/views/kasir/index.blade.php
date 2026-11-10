@@ -6,16 +6,23 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Kasir Retail POS</title>
     <link rel="stylesheet" href="{{ asset('css/chasier.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 </head>
 <body>
-<div class="pos-container">
+<div class="admin-shell">
+    @include('partials.sidebar')
+    <div class="adm-content adm-content--flush">
+        <div class="pos-container">
 
     <!-- HEADER -->
     <header class="header">
-        <div>
-            <div class="store-name">TOKO RETAIL MAKMUR</div>
-            <div class="store-info">
-                Jl. Contoh No. 123 • Jember • Telp. 0812-xxxx-xxxx
+        <div class="header-left">
+            <button type="button" class="menu-toggle" onclick="toggleSidebar()" aria-label="Menu">&#9776;</button>
+            <div>
+                <div class="store-name">TOKO RETAIL MAKMUR</div>
+                <div class="store-info">
+                    Jl. Contoh No. 123 • Jember • Telp. 0812-xxxx-xxxx
+                </div>
             </div>
         </div>
         <div class="transaction-info">
@@ -189,23 +196,14 @@
 
     <!-- FOOTER -->
     <footer class="footer">
-        <span>
-            Kasir: {{ $kasir }}
-            <span class="footer-nav">
-                <a href="{{ route('kasir.ditahan') }}">Transaksi Ditahan</a>
-                <a href="{{ route('kasir.riwayat') }}">Riwayat</a>
-                <a href="{{ route('kasir.produk.index') }}">Kelola Produk</a>
-                <form method="POST" action="{{ route('logout') }}" style="display:inline">
-                    @csrf
-                    <button type="submit">Logout</button>
-                </form>
-            </span>
-        </span>
+        <span>Kasir: {{ $kasir }}</span>
 
         <span>
             F2 Cari Barang • F4 Bayar • ESC Batal
         </span>
     </footer>
+</div>
+    </div>
 </div>
 
 @include('partials.echo')

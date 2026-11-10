@@ -27,6 +27,12 @@ body {
     justify-content: space-between;
 }
 
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
 .store-name {
     font-size: 22px;
     font-weight: bold;

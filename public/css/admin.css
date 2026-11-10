@@ -10,6 +10,62 @@
     min-height: 100vh;
 }
 
+.admin-shell {
+    overflow-x: clip;
+}
+
+.admin-shell.sidebar-collapsed {
+    grid-template-columns: 0 1fr;
+}
+
+.adm-side {
+    width: 240px;
+    transition: transform .2s ease;
+}
+
+.admin-shell.sidebar-collapsed .adm-side {
+    transform: translateX(-240px);
+}
+
+.adm-topbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.adm-topbar strong {
+    font-size: 16px;
+}
+
+.menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    flex: 0 0 auto;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    background: #fff;
+    color: #212529;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.menu-toggle:hover {
+    background: #f8f9fa;
+}
+
+.adm-overlay {
+    display: none;
+}
+
+.adm-content--flush {
+    padding: 0;
+}
+
 .adm-side {
     background: var(--adm-side);
     color: #adb5bd;
@@ -92,19 +148,54 @@
         grid-template-columns: 1fr;
     }
 
+    .adm-side {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 240px;
+        height: 100vh;
+        z-index: 1000;
+        transform: translateX(-100%);
+    }
+
+    .admin-shell.sidebar-open .adm-side {
+        transform: translateX(0);
+    }
+
+    .admin-shell.sidebar-collapsed .adm-side {
+        transform: translateX(-100%);
+    }
+
+    .adm-overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 999;
+        background: rgba(0, 0, 0, .5);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity .2s, visibility .2s;
+    }
+
+    .admin-shell.sidebar-open .adm-overlay {
+        opacity: 1;
+        visibility: visible;
+    }
+
     .adm-menu {
-        display: flex;
-        flex-wrap: wrap;
+        display: block;
     }
 
     .adm-menu a {
-        border-left: none;
-        border-bottom: 3px solid transparent;
-        padding: 11px 14px;
+        border-left: 3px solid transparent;
+        border-bottom: none;
+        padding: 11px 18px;
     }
 
     .adm-menu a.adm-active {
-        border-bottom-color: var(--adm-active);
+        border-left-color: var(--adm-active);
+        border-bottom-color: transparent;
     }
 }
 
