@@ -87,10 +87,6 @@
     min-width: 0;
 }
 
-.adm-content > .card > .card-header .adm-title {
-    font-size: 16px;
-}
-
 @media (max-width: 800px) {
     .admin-shell {
         grid-template-columns: 1fr;
@@ -168,7 +164,7 @@
     align-items: center;
 }
 
-.filter-bar .search-area {
+.search-area.filter-bar {
     margin-bottom: 0;
 }
 
