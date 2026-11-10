@@ -11,7 +11,7 @@
 
         body {
             font-size: 12px;
-            color: #1f2937;
+            color: #212529;
         }
 
         .header {
@@ -43,7 +43,7 @@
 
         .table th,
         .table td {
-            border: 1px solid #d1d5db;
+            border: 1px solid #dee2e6;
             padding: 6px 8px;
         }
 
