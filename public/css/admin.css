@@ -8,9 +8,6 @@
     display: grid;
     grid-template-columns: 240px 1fr;
     min-height: 100vh;
-}
-
-.admin-shell {
     overflow-x: clip;
 }
 
@@ -159,12 +156,12 @@
         transform: translateX(-100%);
     }
 
-    .admin-shell.sidebar-open .adm-side {
-        transform: translateX(0);
-    }
-
     .admin-shell.sidebar-collapsed .adm-side {
         transform: translateX(-100%);
+    }
+
+    .admin-shell.sidebar-open .adm-side {
+        transform: translateX(0);
     }
 
     .adm-overlay {
