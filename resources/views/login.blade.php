@@ -5,15 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login — Kasir Retail POS</title>
     <link rel="stylesheet" href="{{ asset('css/chasier.css') }}">
-    <style>
-        body { display: flex; align-items: center; justify-content: center; }
-        .login-box { width: 340px; margin-top: 12vh; }
-        .login-box .form-control { height: 44px; }
-        .login-box .btn { width: 100%; height: 46px; margin-top: 6px; }
-        .login-error { background: #f8d7da; color: #842029; padding: 10px 12px; border-radius: 5px; font-size: 13px; margin-bottom: 14px; }
-    </style>
 </head>
-<body>
+<body class="login-page">
 <div class="login-box">
     <div class="card">
         <div class="card-header">Kasir Retail POS — Login</div>
