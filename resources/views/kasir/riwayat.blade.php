@@ -7,7 +7,7 @@
     <div class="card-header">
         <div class="page-head">
             <span>Riwayat Transaksi</span>
-            <a href="{{ route('kasir') }}" class="btn btn-primary" style="text-decoration:none; line-height:36px">Transaksi Baru</a>
+            <a href="{{ route('kasir') }}" class="btn btn-primary">Transaksi Baru</a>
         </div>
     </div>
 

@@ -7,7 +7,7 @@
     <div class="card-header">
         <div class="page-head">
             <span>Transaksi Ditahan</span>
-            <a href="{{ route('kasir') }}" class="btn btn-primary" style="text-decoration:none; line-height:36px">Transaksi Baru</a>
+            <a href="{{ route('kasir') }}" class="btn btn-primary">Transaksi Baru</a>
         </div>
     </div>
     <div class="table-wrapper">
@@ -29,11 +29,11 @@
                         <td class="text-center">{{ $t->details->sum('qty') }}</td>
                         <td class="text-right"><strong>{{ 'Rp '.number_format($t->grand_total, 0, ',', '.') }}</strong></td>
                         <td>
-                            <a href="{{ route('kasir', ['resume' => $t->id]) }}" class="btn btn-primary" style="text-decoration:none; padding:0 14px; line-height:34px">Lanjutkan</a>
+                            <a href="{{ route('kasir', ['resume' => $t->id]) }}" class="btn btn-primary" style="padding:0 14px">Lanjutkan</a>
                             <form method="POST" action="{{ route('kasir.cancel', $t) }}" style="display:inline"
                                   onsubmit="return confirm('Batalkan transaksi #{{ $t->id }}?')">
                                 @csrf
-                                <button type="submit" class="btn btn-danger" style="padding:0 14px; line-height:34px">Batal</button>
+                                <button type="submit" class="btn btn-danger" style="padding:0 14px">Batal</button>
                             </form>
                         </td>
                     </tr>
